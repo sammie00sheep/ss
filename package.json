@@ -33,12 +33,6 @@
   "scripts": {
     "start": "node fb_heroku_bot.js"
   },
-  "homepage": "http://howdy.ai/botkit",
-  "keywords": [
-    "bots",
-    "chatbots",
-    "slack"
-  ],
   "author": "ben@xoxco.com",
   "license": "MIT"
 }
