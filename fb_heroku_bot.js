@@ -1,5 +1,6 @@
 var Botkit = require('./lib/Botkit.js');
 var os = require('os');
+var utuClient = require('utu');
 
 var controller = Botkit.facebookbot({
     debug: true,
@@ -16,6 +17,8 @@ controller.setupWebserver(process.env.PORT, function(err, webserver) {
         console.log('ONLINE!');
     });
 });
+
+var utu = new utuClient.Client('c0c4a8fae8e7402c819b2e0c78c902b1');
 
 controller.api.thread_settings.greeting('Hello! I\'m a Botkit bot!');
 controller.api.thread_settings.get_started('sample_get_started_payload');
@@ -53,6 +56,21 @@ controller.hears(['quick'], 'message_received', function(bot, message) {
                 "payload": "no",
             }
         ]
+    });
+
+    console.log('bot: ', bot);
+    console.log('message: ', message);
+    
+    utu.event("Quick", {
+      platform: utuClient.constants.MESSENGER,
+      platformId: bot.userId,
+      // userId: req.userId,
+      // sessionId: req.sessionId,
+      values: {
+        "req": "stuff",
+        // "sign": sign,
+        // "type": hday,
+      },
     });
 
 });
